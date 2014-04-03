@@ -138,9 +138,11 @@ PNG.prototype.getPalette = function(){
  */
 PNG.prototype.getPixel = function(x, y){
 	if (!this.pixels) throw new Error("pixel data is empty");
-	if (x >= this.width || y >= this.height){
+	if (x > this.width || y > this.height){
 		throw new Error("x,y position out of bound");
 	}
+	x = Math.round(x);
+	y = Math.round(y);
 	var i = this.colors * this.bitDepth / 8 * (y * this.width + x);
 	var pixels = this.pixels;
 
